@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4D82FE;
+        }
+    </style>
+</head>
+<body>
+<h2>Список:</h2>
+<form th:action="@{/books/search}" method="get">
+    <label for="authorSearch">Поиск по автору:</label>
+    <input type="text" id="authorSearch" name="author" placeholder="Введите автора">
+    <button type="submit">Поиск</button>
+</form>
+<table>
+    <caption>Информация о книгах</caption>
+    <thead>
+    <tr>
+        <th>Заголовок</th>
+        <th>Автор</th>
+        <th>Количество страниц</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td>
+            <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
+        </td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.pageCount}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/books/new">Добавить новую книгу в список</a>
+</body>
+</html>

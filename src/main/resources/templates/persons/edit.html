@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение пользователя</title>
+</head>
+<body>
+
+<form th:method="post" th:action="@{/persons/update/{id}(id=${person.id})}" th:object="${person}">
+    <label for="name">Введите имя</label>
+    <input type="text" id="name" th:field="*{name}">
+    <br/>
+    <label for="age">Введите возраст</label>
+    <input type="number" id="age" th:field="*{age}">
+    <br/>
+    <label for="email">Введите почту</label>
+    <input type="text" id="email" th:field="*{email}">
+    <input type="submit" value="Сохранить данные">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить машину</title>
+</head>
+<body>
+<h1>Изменить машину</h1>
+<form method="post" th:method="POST" th:action="@{/cars/update/{id}(id=${car.id})}" th:object="${car}">
+    <label for="make">Введите время машины</label>
+    <input type="text" id="make" th:field="*{make}">
+    <br/>
+    <label for="model">Введите модель машины</label>
+    <input type="text" id="model" th:field="*{model}">
+    <br/>
+    <label for="year">Введите год выпуска</label>
+    <input type="number" id="year" th:field="*{year}">
+    <br/>
+    <input type="submit" value="Сохранить данные">
+</form>
+</body>
+</html>

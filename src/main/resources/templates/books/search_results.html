@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Результаты поиска</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #4D82FE;
+    }
+  </style>
+</head>
+<body>
+<h2>Результаты поиска:</h2>
+<table>
+  <caption>Найденные книги</caption>
+  <thead>
+  <tr>
+    <th>Заголовок</th>
+    <th>Автор</th>
+    <th>Количество страниц</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book : ${books}">
+    <td>
+      <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
+    </td>
+    <td th:text="${book.author}"></td>
+    <td th:text="${book.pageCount}"></td>
+  </tr>
+  </tbody>
+</table>
+<a href="/books">Вернуться к списку всех книг</a>
+</body>
+</html>

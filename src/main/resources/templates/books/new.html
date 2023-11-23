@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание новой книги</title>
+</head>
+<body>
+<h2>Создание новой книги</h2>
+<form method="post" th:action="@{/books}" th:object="${book}">
+    <label for="title">Заголовок</label>
+    <input type="text" id="title" th:field="*{title}" placeholder="Введите заголовок">
+    <br/>
+    <label for="author">Автор</label>
+    <input type="text" id="author" th:field="*{author}" placeholder="Введите автора">
+    <br/>
+    <label for="pageCount">Количество страниц</label>
+    <input type="number" id="pageCount" th:field="*{pageCount}" placeholder="Введите количество страниц">
+    <br/>
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

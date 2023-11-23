@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4D82FE ;
+        }
+    </style>
+</head>
+<body>
+<h2>Список пользователей</h2>
+<form action="/persons/search" method="get">
+    <label for="search">Поиск по имени:</label>
+    <input type="text" id="search" name="name">
+    <button type="submit">Искать</button>
+</form>
+
+<table>
+    <caption>Информация о пользователях</caption>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Возраст</th>
+        <th>Почта</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person: ${persons}">
+        <td>
+            <a th:href="@{/persons/{id}(id=${person.id})}" th:text="${person.name}"></a>
+        </td>
+        <td th:text="${person.age}"></td>
+        <td th:text="${person.email}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/persons/new">Создать нового пользователя</a>
+</body>
+</html>

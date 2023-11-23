@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список машин</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4D82FE;
+        }
+    </style>
+</head>
+<body>
+<h1>Список машин</h1>
+<form action="/cars/search" method="get">
+    <label for="search">Поиск по марке автомобиля:</label>
+    <input type="text" id="search" name="make">
+    <button type="submit">Искать</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>Модель</th>
+        <th>Время выпуска</th>
+        <th>Год</th>
+    </tr>
+    <tr th:each="car : ${cars}">
+        <td>
+            <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="${car.getModel()}"></a>
+        </td>
+        <td th:text="${car.getMake()}"></td>
+        <td th:text="${car.getYear()}"></td>
+    </tr>
+</table>
+
+<a href="/cars/new">Добавить новую машину</a>
+</body>
+</html>
