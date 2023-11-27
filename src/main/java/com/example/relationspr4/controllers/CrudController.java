@@ -18,7 +18,6 @@ public abstract class CrudController<T, ID> {
     protected final JpaRepository<T, ID> repository;
     private final String entityName;
 
-
     protected CrudController(JpaRepository<T, ID> repository, String entityName) {
         this.repository = repository;
         this.entityName = entityName;

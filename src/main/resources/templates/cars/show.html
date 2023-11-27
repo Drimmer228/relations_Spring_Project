@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о машине</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <!-- Ваши стили и скрипты -->
 </head>
 <body>
 <div class="container">
@@ -13,24 +12,24 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
             <tr>
-                <th>Уникальный номер</th>
-                <th>Создана в</th>
+                <th>ID</th>
+                <th>Марка</th>
                 <th>Модель</th>
-                <th>Год</th>
+                <th>Год выпуска</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td th:text="${car.getId()}"></td>
-                <td th:text="${car.getMake()}"></td>
-                <td th:text="${car.getModel()}"></td>
-                <td th:text="${car.getYear()}"></td>
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.make}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.year}"></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <a th:href="@{/cars/{id}/edit(id=${car.getId()})}" class="btn btn-primary">Edit</a>
-    <form method="post" th:method="DELETE" th:action="@{/cars/delete/{id}(id=${car.getId()})}">
+    <a th:href="@{/cars/{id}/edit(id=${car.id})}" class="btn btn-primary">Изменить</a>
+    <form method="post" th:method="DELETE" th:action="@{/cars/delete/{id}(id=${car.id})}">
         <input type="submit" class="btn btn-danger" value="Удалить">
     </form>
 </div>

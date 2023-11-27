@@ -15,8 +15,27 @@
     <br/>
     <label for="email">Введите почту</label>
     <input type="text" id="email" th:field="*{email}">
-    <input type="submit" value="Сохранить данные">
+    <br/>
+    <input type="submit" value="Сохранить данные пользователя">
 </form>
+
+<a th:href="@{/persons/{id}/modifyCarAtPerson(id=${person.id})}">Работа с машинами пользователя</a>
+
+<a th:href="@{/persons/{id}/modifyHouseAtPerson(id=${person.id})}">Управление домами пользователя</a>
+
+<h3>Машины, присвоенные пользователю:</h3>
+<ul>
+    <li th:each="car: ${person.cars}">
+        <span th:text="${car.getModel()}"></span>
+    </li>
+</ul>
+
+<h3>Дома, присвоенные пользователю:</h3>
+<ul>
+    <li th:each="house: ${person.houses}">
+        <span th:text="${house.getHouseName()}"></span>
+    </li>
+</ul>
 
 </body>
 </html>

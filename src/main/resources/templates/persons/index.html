@@ -16,7 +16,24 @@
         }
 
         th {
-            background-color: #4D82FE ;
+            background-color: #4D82FE;
+        }
+
+        .edit-btn,
+        .remove-btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .remove-btn {
+            background-color: #f44336;
         }
     </style>
 </head>
@@ -35,6 +52,8 @@
         <th>Имя</th>
         <th>Возраст</th>
         <th>Почта</th>
+        <th>Машины</th>
+        <th>Дома</th>
     </tr>
     </thead>
     <tbody>
@@ -44,6 +63,16 @@
         </td>
         <td th:text="${person.age}"></td>
         <td th:text="${person.email}"></td>
+        <td>
+            <ul>
+                <li th:each="car: ${person.cars}" th:text="${car.getModel()}"></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="house: ${person.houses}" th:text="${house.address}"></li>
+            </ul>
+        </td>
     </tr>
     </tbody>
 </table>

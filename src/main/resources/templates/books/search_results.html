@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Результаты поиска</title>
+  <title>Главная страница</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    .navbar {
+      background-image: linear-gradient(to right, #007afd, #007afd);
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
@@ -18,29 +23,59 @@
     th {
       background-color: #4D82FE;
     }
+
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-<h2>Результаты поиска:</h2>
-<table>
-  <caption>Найденные книги</caption>
-  <thead>
-  <tr>
-    <th>Заголовок</th>
-    <th>Автор</th>
-    <th>Количество страниц</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="book : ${books}">
-    <td>
-      <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
-    </td>
-    <td th:text="${book.author}"></td>
-    <td th:text="${book.pageCount}"></td>
-  </tr>
-  </tbody>
-</table>
-<a href="/books">Вернуться к списку всех книг</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">РазноеТут.нет</a>
+  <a class="btn btn-outline-light ml-auto" href="/login">Войти</a>
+</nav>
+
+<div class="container mt-5" id="content">
+  <h2>Результаты поиска:</h2>
+  <table>
+    <caption>Найденные книги</caption>
+    <thead>
+    <tr>
+      <th>Заголовок</th>
+      <th>Автор</th>
+      <th>Количество страниц</th>
+      <th>Дополнительная информация</th>
+      <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+      <td>
+        <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}"></a>
+      </td>
+      <td th:text="${book.author}"></td>
+      <td th:text="${book.pageCount}"></td>
+      <td th:text="${book.bookDetail.additionalInfo}"></td>
+      <td th:text="${book.category.categoryName}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/books">Вернуться к списку всех книг</a>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 DmitryCompany</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

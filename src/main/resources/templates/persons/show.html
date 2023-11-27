@@ -17,6 +17,8 @@
                 <th>Имя</th>
                 <th>Возраст</th>
                 <th>Почта</th>
+                <th>Машины</th>
+                <th>Дома</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +27,17 @@
                 <td th:text="${person.name}"></td>
                 <td th:text="${person.age}"></td>
                 <td th:text="${person.email}"></td>
+                <td>
+                    <ul>
+                        <li th:each="car: ${person.cars}" th:text="${car.getModel()}"></li>
+                    </ul>
+                </td>
+
+                <td>
+                    <ul>
+                        <li th:each="house: ${person.houses}" th:text="${house.getAddress()}"></li>
+                    </ul>
+                </td>
             </tr>
             </tbody>
         </table>

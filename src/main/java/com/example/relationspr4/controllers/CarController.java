@@ -2,24 +2,84 @@ package com.example.relationspr4.controllers;
 
 import com.example.relationspr4.models.CarModel;
 import com.example.relationspr4.repositories.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.relationspr4.repositories.PersonRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/cars")
-public class CarController extends CrudController<CarModel, Long> {
-    private final CarRepository carRepository;
+public class CarController {
 
-    @Autowired
-    public CarController(CarRepository carRepository) {
-        super(carRepository, "car");
+    private final CarRepository carRepository;
+    private final PersonRepository personRepository;
+
+    public CarController(CarRepository carRepository, PersonRepository personRepository) {
         this.carRepository = carRepository;
+        this.personRepository = personRepository;
+    }
+
+    @GetMapping()
+    public String getAll(Model model) {
+        model.addAttribute("cars", carRepository.findAll());
+        return "cars/index";
+    }
+
+    @GetMapping("/new")
+    public String newCarForm(Model model) {
+        model.addAttribute("car", new CarModel());
+        model.addAttribute("owners", personRepository.findAll());
+        return "cars/new";
+    }
+
+    @PostMapping()
+    public String createCar(@Valid @ModelAttribute("car") CarModel car, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "cars/new";
+        }
+        carRepository.save(car);
+        return "redirect:/cars";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editCarForm(@PathVariable Long id, Model model) {
+        CarModel car = carRepository.findById(id).orElse(null);
+        if (car != null) {
+            model.addAttribute("car", car);
+            model.addAttribute("owners", personRepository.findAll());
+            return "cars/edit";
+        }
+        return "redirect:/cars";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateCar(@PathVariable Long id, @Valid @ModelAttribute("car") CarModel car, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "cars/edit";
+        }
+        carRepository.save(car);
+        return "redirect:/cars";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteCar(@PathVariable Long id) {
+        carRepository.deleteById(id);
+        return "redirect:/cars";
+    }
+
+    @GetMapping("/{id}")
+    public String showCar(@PathVariable Long id, Model model) {
+        CarModel car = carRepository.findById(id).orElse(null);
+        if (car != null) {
+            model.addAttribute("car", car);
+            return "cars/show";
+        }
+        return "redirect:/cars";
     }
 
     @GetMapping("/search")

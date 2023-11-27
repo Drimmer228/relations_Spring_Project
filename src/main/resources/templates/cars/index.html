@@ -4,20 +4,7 @@
     <meta charset="UTF-8">
     <title>Список машин</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #000000;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #4D82FE;
-        }
+        /* ваш стиль таблицы */
     </style>
 </head>
 <body>
@@ -30,16 +17,16 @@
 
 <table border="1">
     <tr>
+        <th>Марка</th>
         <th>Модель</th>
-        <th>Время выпуска</th>
-        <th>Год</th>
+        <th>Год выпуска</th>
     </tr>
     <tr th:each="car : ${cars}">
         <td>
-            <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="${car.getModel()}"></a>
+            <a th:href="@{/cars/{id}(id=${car.id})}" th:text="${car.make}"></a>
         </td>
-        <td th:text="${car.getMake()}"></td>
-        <td th:text="${car.getYear()}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.year}"></td>
     </tr>
 </table>
 

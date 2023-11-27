@@ -63,4 +63,12 @@ public class CarModel {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public PersonModel getOwner() {
+        return owner;
+    }
+
+    public void setOwner(PersonModel owner) {
+        this.owner = owner;
+    }
 }

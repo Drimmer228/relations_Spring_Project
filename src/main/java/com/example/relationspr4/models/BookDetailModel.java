@@ -14,6 +14,17 @@ public class BookDetailModel {
     @NotBlank(message = "Type is required")
     private String type;
 
+    @NotBlank(message = "Additional info is required")
+    private String additionalInfo;
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
     public long getId() {
         return id;
     }

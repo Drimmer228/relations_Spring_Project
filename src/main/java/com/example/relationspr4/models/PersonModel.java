@@ -71,4 +71,20 @@ public class PersonModel {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<CarModel> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<CarModel> cars) {
+        this.cars = cars;
+    }
+
+    public List<HouseModel> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<HouseModel> houses) {
+        this.houses = houses;
+    }
 }
